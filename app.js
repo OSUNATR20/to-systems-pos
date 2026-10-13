@@ -1,6 +1,6 @@
 // Configuración de Supabase (Reemplaza con tus credenciales de tu proyecto)
-const SUPABASE_URL = 'TU_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'TU_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://ulcgtoxurnaupfsncnca.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsY2d0b3h1cm5hdXBmc25jbmNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1ODY4MTksImV4cCI6MjEwNzE2MjgxOX0.lXlRSeMQvJbCgxEwoqfti99Uey2rK7Btoiue3nzqHLg';
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
