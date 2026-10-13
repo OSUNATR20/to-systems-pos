@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T.O Systems - Stock & Sale</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e293b">
+    <!-- SDK de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Pantalla de Login -->
+    <div id="login-container" class="auth-screen">
+        <div class="auth-card">
+            <h2>T.O Systems</h2>
+            <p>Control de Inventario y Ventas</p>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit" class="btn-primary">Iniciar Sesión</button>
+            </form>
+            <div id="login-error" class="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- Sistema Principal (Dashboard / POS) -->
+    <div id="app-container" class="app-screen" style="display: none;">
+        <header class="navbar">
+            <div class="logo">T.O Systems <span>POS</span></div>
+            <div class="user-info">
+                <span id="user-email-display"></span>
+                <button id="btn-logout" class="btn-secondary">Salir</button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Sección de Inventario / Ventas -->
+            <section class="pos-section">
+                <h2>Punto de Venta</h2>
+                <div class="search-box">
+                    <input type="text" id="search-product" placeholder="Buscar producto por nombre o código...">
+                </div>
+                <div id="products-grid" class="products-grid">
+                    <!-- Los productos se cargan dinámicamente desde Supabase -->
+                </div>
+            </section>
+
+            <!-- Carrito de Compras / Facturación -->
+            <section class="cart-section">
+                <h3>Facturación Actual</h3>
+                <div id="cart-items" class="cart-items">
+                    <!-- Items agregados -->
+                </div>
+                <div class="cart-totals">
+                    <p>Total USD: $<span id="total-usd">0.00</span></p>
+                    <p>Total VES: Bs. <span id="total-ves">0.00</span></p>
+                    <div class="payment-buttons">
+                        <button class="btn-success" onclick="finalizarVenta('USD')">Cobrar en USD</button>
+                        <button class="btn-success" onclick="finalizarVenta('VES')">Cobrar en VES</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Registrar Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(() => console.log('Service Worker registrado con éxito'))
+                .catch(err => console.log('Error al registrar Service Worker', err));
+        }
+    </script>
+</body>
+</html>
